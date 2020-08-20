@@ -305,7 +305,7 @@ local function initLibrary()
                 SliceScale = 1;
                 Name = "back";
                 library:Create("UIGradient", {
-                    Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(1, Color3.fromRGB(132, 41, 255))}
+                    Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(1, Color3.fromRGB(227, 35, 68))}
                 });
                 library:Create("TextLabel", {
                     BackgroundTransparency = 1;
