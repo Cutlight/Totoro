@@ -92,8 +92,8 @@ local function initLibrary()
             toggleBorderColor = Color3.fromRGB(227, 35, 68);
             boxColor = Color3.fromRGB(32, 32, 32);
             boxBorderColor = Color3.fromRGB(227, 35, 68);
-            gradientColorSection = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(1, Color3.fromRGB(122, 41, 255))};
-            gradientColor = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(0, Color3.fromRGB(142, 61, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(210, 74, 255))};
+            gradientColorSection = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(1, Color3.fromRGB(227, 35, 68))};
+            gradientColor = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(1, Color3.fromRGB(210, 74, 255))};
             shadowGradientColor = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(20, 20, 20)), ColorSequenceKeypoint.new(1, Color3.fromRGB(36, 36, 36))};
         };
 
