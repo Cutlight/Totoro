@@ -87,13 +87,13 @@ local function initLibrary()
             mainColor = Color3.fromRGB(36, 36, 36);
             bottomColor = Color3.fromRGB(34, 34, 34);
             borderColor = Color3.fromRGB(42, 42, 42);
-            scrollingBarColor = Color3.fromRGB(115, 41, 255);
+            scrollingBarColor = Color3.fromRGB(227, 35, 68);
             toggleColor = Color3.fromRGB(34, 34, 34);
-            toggleBorderColor = Color3.fromRGB(102, 41, 255);
+            toggleBorderColor = Color3.fromRGB(227, 35, 68);
             boxColor = Color3.fromRGB(32, 32, 32);
-            boxBorderColor = Color3.fromRGB(102, 41, 255);
-            gradientColorSection = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(102, 41, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(122, 41, 255))};
-            gradientColor = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(102, 41, 255)), ColorSequenceKeypoint.new(0, Color3.fromRGB(142, 61, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(210, 74, 255))};
+            boxBorderColor = Color3.fromRGB(227, 35, 68);
+            gradientColorSection = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(1, Color3.fromRGB(122, 41, 255))};
+            gradientColor = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(0, Color3.fromRGB(142, 61, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(210, 74, 255))};
             shadowGradientColor = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(20, 20, 20)), ColorSequenceKeypoint.new(1, Color3.fromRGB(36, 36, 36))};
         };
 
@@ -110,6 +110,14 @@ local function initLibrary()
         local gui = Instance.new("ScreenGui", CoreGui);
         gui.Enabled = false;
         library.gui = gui;
+
+	UserInputService.InputBegan:Connect(function(Input, gameProcessedEvent)
+    	if gameProcessedEvent then return end
+
+    	if Input.KeyCode == Enum.KeyCode.RightControl then
+        	gui.Enabled = not gui.Enabled
+    	end
+	end)
 
         local main = library:Create("Frame", {
             Name = "main";
@@ -212,11 +220,11 @@ local function initLibrary()
                         Position = UDim2.new(0, 10, 0.5, -10);
                         Size = UDim2.new(0, 70, 0, 24);
                         TextColor3 = Color3.fromRGB(255, 255, 255);
-                        Text = "Totoro";
+                        Text = "Totoro Lib";
                         Font = "GothamSemibold";
                         TextSize = 14;
                         library:Create("UIGradient", {
-                            Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(39, 133, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(210, 74, 255))}
+                            Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227,35,68)), ColorSequenceKeypoint.new(1, Color3.fromRGB(227,35,68))}
                         });
                     });
                     library:Create("Frame", {
@@ -236,32 +244,32 @@ local function initLibrary()
                 });
             });
         });
-
+ 
         local modal = Instance.new("TextButton", main);
         modal.Modal = true;
         modal.BackgroundTransparency = 1;
         modal.Text = "";
-
+ 
         main.Search.textbox.Changed:Connect(function()
             local Entry = main.Search.textbox.Text:lower();
-
+ 
             if(Entry ~= "") then
                 for i,v in next, library.currentSection:GetChildren() do
                     if(not v:IsA("UIPadding") and not v:IsA("UIListLayout")) then
                         local label = v:FindFirstChild("label");
                         local button = v:FindFirstChild("button");
-
+ 
                         local find = false;
                         if(label and label.Text:gsub("%s", ""):lower():sub(1, #Entry) == Entry) then
                             v.Visible = true;
                             find = true;
                         end;
-
+ 
                         if(button and button:FindFirstChild("label") and button.label.Text:gsub("%s", ""):lower():sub(1, #Entry) == Entry) then
                             v.Visible = true;
                             find = true;
                         end;
-
+ 
                         if(not find) then
                             v.Visible = false;
                         end;
@@ -274,18 +282,18 @@ local function initLibrary()
                     end;
                 end;
             end;
-
+ 
             library.currentSectionObject:Update();
         end);
-
+ 
         library:Dragger(main.bar.bottom, main);
         function library:Ready()
             gui.Enabled = true;
         end;
-
+ 
         function library:CreateSection(name)
             local topContainer = gui.main.bar.bottom.topcontainer;
-
+ 
             local sectionSelector = library:Create("ImageButton", {
                 Parent = topContainer;
                 BackgroundTransparency = 1;
@@ -297,7 +305,7 @@ local function initLibrary()
                 SliceScale = 1;
                 Name = "back";
                 library:Create("UIGradient", {
-                    Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(102, 41, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(132, 41, 255))}
+                    Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(1, Color3.fromRGB(132, 41, 255))}
                 });
                 library:Create("TextLabel", {
                     BackgroundTransparency = 1;
@@ -306,7 +314,7 @@ local function initLibrary()
                     TextColor3 = Color3.fromRGB(255, 255, 255);
                 });
             });
-
+ 
             local boxContainer = library:Create("ScrollingFrame", {
                 Name = "box";
                 BorderSizePixel = 0;
@@ -329,36 +337,36 @@ local function initLibrary()
                     VerticalAlignment = "Top";
                 });
             });
-
+ 
             local section = {};
-
+ 
             boxContainer.ChildAdded:Connect(function(Obj)
                 section:Update();
             end);
-
+ 
             if(not library.currentSection) then
                 library.currentSectionSelector = sectionSelector;
                 library.currentSection = boxContainer;
                 library.currentSectionObject = section;
-
+ 
                 library.currentSectionSelector.ImageColor3 = Color3.fromRGB(150, 150, 150);
                 boxContainer.Visible = true;
             else
                 boxContainer.Visible = false;
             end;
-
+ 
             sectionSelector.MouseButton1Click:Connect(function()
                 if(library.currentSection) then
                     library.currentSectionSelector.ImageColor3 = Color3.fromRGB(255, 255, 255);
                     library.currentSection.Visible = false;
                 end;
-
+ 
                 sectionSelector.ImageColor3 = Color3.fromRGB(150, 150, 150);
                 boxContainer.Visible = true;
                 library.currentSectionSelector = sectionSelector;
                 library.currentSection = boxContainer;
             end);
-
+ 
             function section:Update()
                 local CanvasSize = UDim2.new(0, 0, 0, 85)
                 for i,v in next, boxContainer:GetChildren() do
@@ -366,10 +374,10 @@ local function initLibrary()
                         CanvasSize = CanvasSize + UDim2.new(0, 0, 0, v.AbsoluteSize.Y + 5);
                     end;
                 end;
-
+ 
                 library:Tween(boxContainer, {time = 0.1, CanvasSize = CanvasSize});
             end;
-
+ 
             function section:Label(labelName)
                 local holder = library:Create("Frame", {
                     Name = "holder";
@@ -389,13 +397,13 @@ local function initLibrary()
                     });
                 });
             end;
-
+ 
             function section:Toggle(toggleName, callback)
                 local callback = callback or function() end;
                 local toggle = false;
-
+ 
                 library.flags[toggleName] = toggle;
-
+ 
                 local holder = library:Create("Frame", {
                     BackgroundTransparency = 1;
                     Parent = boxContainer;
@@ -443,18 +451,18 @@ local function initLibrary()
                         });
                     });
                 });
-
+ 
                 local function onClick()
                     toggle = not toggle;
                     library:Tween(holder.toggle.fill, {time = 0.1, Size = toggle and UDim2.new(1, 0, 1, 0) or UDim2.new(0, 0, 0, 0)});
                     library.flags[toggleName] = toggle;
                     callback(toggle);
                 end;
-
+ 
                 holder.toggle.MouseButton1Click:Connect(onClick);
                 return holder;
             end;
-
+ 
             function section:Box(boxName, callback)
                 local holder = library:Create("Frame", {
                     Size = UDim2.new(1, -20, 0, 18);
@@ -486,7 +494,7 @@ local function initLibrary()
                         Font = "SourceSans";
                     });
                 });
-
+ 
                 holder.textbox.FocusLost:Connect(function(Enter)
                     if(Enter) then
                         library.flags[boxName] = holder.textbox.Text;
@@ -494,11 +502,11 @@ local function initLibrary()
                     end;
                 end);
             end;
-
+ 
             function section:Slider(sliderName, properties, callback)
                 local callback = callback or function() end;
                 library.flags[sliderName] = properties.min;
-
+ 
                 local holder = library:Create("Frame", {
                     Size = UDim2.new(1, -20, 0, 36);
                     BackgroundTransparency = 1;
@@ -518,7 +526,7 @@ local function initLibrary()
                     library:Create("TextButton", {
                         Name = "slider";
                         BackgroundColor3 = Color3.fromRGB(34, 34, 34);
-                        BorderColor3 = Color3.fromRGB(102, 41, 255);
+                        BorderColor3 = Color3.fromRGB(227, 35, 68);
                         Position = UDim2.new(0, 0, 1, -19);
                         Size = UDim2.new(1, 0, 0, 16);
                         AutoButtonColor = false;
@@ -549,7 +557,7 @@ local function initLibrary()
                         });
                     });
                 });
-
+ 
                 local Connection;
                 UserInputService.InputEnded:Connect(function(input)
                     if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -559,38 +567,38 @@ local function initLibrary()
                         end;
                     end;
                 end);
-
+ 
                 holder.slider.MouseButton1Down:Connect(function()
                     if(Connection) then
                         Connection:Disconnect();
                     end;
-
+ 
                     Connection = RunService.Heartbeat:Connect(function()
                         local mouse = UserInputService:GetMouseLocation();
                         local percent = math.clamp((mouse.X - holder.slider.AbsolutePosition.X) / (holder.slider.AbsoluteSize.X), 0, 1);
                         local Value = properties.min + (properties.max - properties.min) * percent;
-
+ 
                         if not properties.precise then
                             Value = math.floor(Value);
                         end;
-
+ 
                         Value = tonumber(string.format("%.2f", Value));
-
+ 
                         library:Tween(holder.slider.fill, {time = 0.1, Size = UDim2.new(percent, 0, 1, -2)})
                         holder.slider.value.Text = tostring(Value);
                         library.flags[sliderName] = Value;
-
+ 
                         callback(Value);
                     end);
                 end);
             end;
-
+ 
             function section:Bind(bindName, defaultKey, callback)
                 local callback = callback or function() end;
                 local input = defaultKey and tostring(defaultKey):gsub("Enum.", ""):gsub("UserInputType.", ""):gsub("KeyCode.", "") or "None";
                 library.callbacks[bindName] = callback;
                 library.flags[bindName] = defaultKey;
-
+ 
                 local holder = library:Create("Frame", {
                     Name = "holder";
                     Parent = boxContainer;
@@ -613,7 +621,7 @@ local function initLibrary()
                     library:Create("TextButton", {
                         Name = "keybind";
                         BackgroundColor3 = Color3.fromRGB(34, 34, 34);
-                        BorderColor3 = Color3.fromRGB(102, 41, 255);
+                        BorderColor3 = Color3.fromRGB(227, 35, 68);
                         ClipsDescendants = true;
                         Position = UDim2.new(1, -80, 0, 0);
                         Size = UDim2.new(0, 80, 1, 0);
@@ -624,7 +632,7 @@ local function initLibrary()
                         TextSize = 14.000;
                     });
                 });
-
+ 
                 local whitelistedType = {
                     [Enum.KeyCode.LeftShift] = "L-Shift",
                     [Enum.KeyCode.RightShift] = "R-Shift",
@@ -674,16 +682,16 @@ local function initLibrary()
                     [Enum.UserInputType.MouseButton2] = "Button-2",
                     [Enum.UserInputType.MouseButton3] = "Button-3",
                 };
-
+ 
                 holder.keybind.MouseButton1Click:Connect(function()
                     holder.keybind.Text = ". . .";
                     local connection;
                     connection = UserInputService.InputBegan:Connect(function(input)
                         connection:Disconnect();
                         wait();
-
+ 
                         local KeyCodeName = whitelistedType[input.KeyCode] or whitelistedType[input.UserInputType];
-
+ 
                         holder.keybind.Text = KeyCodeName or tostring(input.KeyCode):gsub("Enum.KeyCode.", "");
                         if(input.UserInputType == Enum.UserInputType.Keyboard) then
                             library.flags[bindName] = input.KeyCode;
@@ -693,7 +701,7 @@ local function initLibrary()
                     end);
                 end);
             end;
-
+ 
             function section:Button(buttonName, callback)
                 local callback = callback or function() end;
                 local holder = library:Create("Frame", {
@@ -725,14 +733,14 @@ local function initLibrary()
                         });
                     });
                 });
-
+ 
                 holder.button.MouseButton1Click:Connect(callback);
             end;
-
+ 
             function section:Dropdown(name, list, callback)
                 local callback = callback or function() end;
                 local toggle = false;
-
+ 
                 local holder = library:Create("Frame", {
                     Name = "holder";
                     BackgroundTransparency = 1.000;
@@ -752,8 +760,8 @@ local function initLibrary()
                     });
                     library:Create("TextButton", {
                         Name = "dropdown";
-                        BackgroundColor3 = Color3.fromRGB(102, 41, 255);
-                        BorderColor3 = Color3.fromRGB(102, 41, 255);
+                        BackgroundColor3 = Color3.fromRGB(227, 35, 68);
+                        BorderColor3 = Color3.fromRGB(227, 35, 68);
                         Size = UDim2.new(1, 0, 0, 18);
                         AutoButtonColor = false;
                         Font = "SourceSans";
@@ -784,7 +792,7 @@ local function initLibrary()
                         library:Create("Frame", {
                             Name = "dropframe";
                             BackgroundColor3 = Color3.fromRGB(32, 32, 32);
-                            BorderColor3 = Color3.fromRGB(102, 41, 255);
+                            BorderColor3 = Color3.fromRGB(227, 35, 68);
                             BorderSizePixel = 0;
                             ClipsDescendants = true;
                             Position = UDim2.new(0, -1, 1, 1);
@@ -807,7 +815,7 @@ local function initLibrary()
                         });
                     });
                 });
-
+ 
                 for i, v in next, list do
                     local button = library:Create("TextButton", {
                         Name = "button";
@@ -822,7 +830,7 @@ local function initLibrary()
                         TextSize = 14.000;
                         ZIndex = 1;
                     });
-
+ 
                     button.MouseButton1Click:Connect(function()
                         toggle = false;
                         holder.dropdown.label.Text = v;
@@ -832,7 +840,7 @@ local function initLibrary()
                         callback(button.Text);
                     end);
                 end;
-
+ 
                 holder.dropdown.MouseButton1Click:Connect(function()
                     toggle = not toggle;
                     local TotalY = 0;
@@ -841,7 +849,7 @@ local function initLibrary()
                             TotalY = TotalY + v.AbsoluteSize.Y + 2;
                         end;
                     end;
-
+ 
                     if(toggle) then
                         library:Tween(holder.dropdown.icon, {time = 0.1, Rotation = 0});
                         library:Tween(holder, {time = 0.1, Size = UDim2.new(1, -20, 0, TotalY + 50)});
@@ -853,13 +861,13 @@ local function initLibrary()
                     end;
                 end);
             end;
-
+ 
             function section:ColorPicker(pickerName, defaultColor, callback)
                 local callback = callback or function() end;
-                local defaultColor = defaultColor or Color3.fromRGB(102, 41, 255);
+                local defaultColor = defaultColor or Color3.fromRGB(227, 35, 68);
                 local rainbowToggle = false;
                 local Mouse = Players.LocalPlayer:GetMouse();
-
+ 
                 local holder = library:Create("Frame", {
                     Name = "holder";
                     Parent = boxContainer;
@@ -879,7 +887,7 @@ local function initLibrary()
                     library:Create("TextButton", {
                         Name = "colorpicker";
                         BackgroundColor3 = Color3.fromRGB(34, 34, 34);
-                        BorderColor3 = Color3.fromRGB(102, 41, 255);
+                        BorderColor3 = Color3.fromRGB(227, 35, 68);
                         Position = UDim2.new(1, -16, 0, 0);
                         Size = UDim2.new(0, 16, 0, 16);
                         AutoButtonColor = false;
@@ -890,7 +898,7 @@ local function initLibrary()
                         library:Create("Frame", {
                             Name = "colorframe";
                             BackgroundColor3 = Color3.fromRGB(32, 32, 32);
-                            BorderColor3 = Color3.fromRGB(102, 41, 255);
+                            BorderColor3 = Color3.fromRGB(227, 35, 68);
                             Position = UDim2.new(0, -148, 1, 6);
                             Size = UDim2.new(0, 144, 0, 139);
                             Visible = false;
@@ -970,17 +978,17 @@ local function initLibrary()
                         });
                     });
                 });
-
-
+ 
+ 
                 local colorData = {
                     H = 1;
                     S = 1;
                     V = 1;
                 };
-
+ 
                 local Connection1;
                 local Connection2;
-
+ 
                 local function getXY(frame)
                     local x, y = Mouse.X - frame.AbsolutePosition.X, Mouse.Y - frame.AbsolutePosition.Y;
                     local maxX, maxY = frame.AbsoluteSize.X,frame.AbsoluteSize.Y;
@@ -988,19 +996,19 @@ local function initLibrary()
                     y = math.clamp(y, 0, maxY);
                     return x / maxX, y / maxY;
                 end;
-
+ 
                 local function Update()
                     local Color = Color3.fromHSV(colorData.H, colorData.S, colorData.V);
                     holder.colorpicker.color.BackgroundColor3 = Color;
                     holder.colorpicker.colorframe.satval.BackgroundColor3 = Color3.fromHSV(colorData.H, 1, 1);
                     callback(Color);
                 end;
-
+ 
                 holder.colorpicker.MouseButton1Click:Connect(function()
                     toggle = not toggle;
                     holder.colorpicker.colorframe.Visible = toggle;
                 end);
-
+ 
                 UserInputService.InputEnded:Connect(function(i)
                     if i.UserInputType == Enum.UserInputType.MouseButton1 then
                         if(Connection1) then
@@ -1014,11 +1022,11 @@ local function initLibrary()
                         isFocused = false;
                     end;
                 end);
-
+ 
                 holder.colorpicker.colorframe.rainbow.MouseButton1Click:Connect(function()
                     rainbowToggle = not rainbowToggle;
                     holder.colorpicker.colorframe.rainbow.label.Text = rainbowToggle and "Rainbow: ON" or "Rainbow: OFF";
-
+ 
                     if(rainbowToggle) then
                         repeat
                             library:Tween(holder.colorpicker.colorframe.hue.selector, {time = 0.1, Position = UDim2.new(0, 0, library.rainbowI, 0)});
@@ -1029,7 +1037,7 @@ local function initLibrary()
                         until not rainbowToggle;
                     end;
                 end);
-
+ 
                 holder.colorpicker.colorframe.satval.InputBegan:Connect(function(i)
                     if i.UserInputType == Enum.UserInputType.MouseButton1 then
                         if(Connection1) then
@@ -1037,7 +1045,7 @@ local function initLibrary()
                         end;
                         Connection1 = RunService.Heartbeat:Connect(function()
                             local X, Y = getXY(holder.colorpicker.colorframe.satval);
-
+ 
                             holder.colorpicker.colorframe.satval.picker.Position = UDim2.new(X, 0, Y, 0);
                             colorData.S = X;
                             colorData.V = 1 - Y;
@@ -1045,16 +1053,16 @@ local function initLibrary()
                         end);
                     end;
                 end);
-
+ 
                 holder.colorpicker.colorframe.hue.InputBegan:Connect(function(i)
                     if i.UserInputType == Enum.UserInputType.MouseButton1 then
                         if(Connection2) then
                             Connection2:Disconnect();
                         end;
-
+ 
                         Connection2 = RunService.Heartbeat:Connect(function()
                             local X, Y = getXY(holder.colorpicker.colorframe.hue);
-
+ 
                             colorData.H = 1 - Y;
                             holder.colorpicker.colorframe.hue.selector.Position = UDim2.new(0, 0, Y, 0);
                             Update();
@@ -1062,12 +1070,12 @@ local function initLibrary()
                     end;
                 end);
             end;
-
+ 
             return section;
         end;
     end;
-
+ 
     return library;
 end;
-
+ 
 return initLibrary();
