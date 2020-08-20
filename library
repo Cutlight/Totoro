@@ -154,7 +154,7 @@ local function initLibrary()
                     Size = UDim2.new(0, 24, 0, 24);
                     Image = "http://www.roblox.com/asset/?id=4645651350";
                     library:Create("UIGradient", {
-                        Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(39, 133, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(210, 74, 255))};
+                        Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(227, 35, 68)), ColorSequenceKeypoint.new(1, Color3.fromRGB(26, 26, 39))};
                         Rotation = 45;
                     });
                 });
