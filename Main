@@ -2,11 +2,11 @@ local library = loadstring(game:HttpGet("https://pastebin.com/raw/QXTWPbsS"))();
 
 local Gamer = library:CreateSection("Scripts");
 
-Gamer:Button("1",function()
-print("Button Pressed!")
+Gamer:Button("FPS Boost",function()
+loadstring(game:HttpGet("https://pastebin.com/raw/dKSP2Pm6", true))()
 end)
-Gamer:Button("2",function()
-print("Button Pressed!")
+Gamer:Button("Enable Shiftlock",function()
+game:GetService('Players').LocalPlayer.DevEnableMouseLock=true
 end)
 Gamer:Button("3",function()
 print("Button Pressed!")
