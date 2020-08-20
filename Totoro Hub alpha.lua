@@ -1,4 +1,4 @@
-local library = loadstring(game:HttpGet("https://pastebin.com/raw/mPTdC43E"))();
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cutlight/Totoro/master/library?token=AN7VOPVJQ4VSCM5QDFSRC2K7H3A24"))();
 
 mytoggle = false
 
