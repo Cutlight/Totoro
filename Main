@@ -16,11 +16,20 @@ end)
 
 local Gamer = library:CreateSection("Games");
 
-Gamer:Button("1",function()
-print("Button Pressed!")
+Gamer:Button("Custom Duels",function()
+_G.CircleSize = 10 -- circle size
+_G.bind = "r" -- key to turn it on/off
+-- comma/period to increase/decrease the size
+loadstring(game:HttpGet("https://pastebin.com/raw/4PnjK4MH",true))()
 end)
-Gamer:Button("2",function()
-print("Button Pressed!")
+Gamer:Button("Ragdoll Engine",function()
+loadstring(game:HttpGet(('https://gitlab.com/Tsuniox/lua-stuff/-/raw/master/RagdollEngineGUI.lua'),true))()
+end)
+Gamer:Button("Dino Simulator",function()
+loadstring(game:HttpGet("https://pastebin.com/raw/npzUE0AE"))()
+end)
+Gamer:Button("Natural Disaster",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/redwireplatinum/NDSGUI/master/NDSGUI"))()
 end)
 Gamer:Button("3",function()
 print("Button Pressed!")
