@@ -1,4 +1,4 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cutlight/Totoro/master/library"))();
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cutlight/Totoro/master/library.lua"))();
 
 mytoggle = false
 
@@ -8,7 +8,7 @@ Gamer:Button("FPS Boost",function()
 loadstring(game:HttpGet("https://pastebin.com/raw/dKSP2Pm6", true))()
 end)
 Gamer:Button("Walk On Walls",function()
-https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/walk%20on%20walls
+print("Button Pressed!")
 end)
 
 local Gamer = library:CreateSection("Games");
@@ -19,17 +19,14 @@ end)
 Gamer:Button("Dino Simulator",function()
 loadstring(game:HttpGet("https://pastebin.com/raw/npzUE0AE"))()
 end)
-Gamer:Button("Natural Disaster",function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/redwireplatinum/NDSGUI/master/NDSGUI"))()
-end)
 Gamer:Button("Arsenal",function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/Arsenal"))()
+print("Button Pressed!")
 end)
 Gamer:Button("Mount of the Gods",function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/Mount%20of%20the%20Gods"))()
+print("Button Pressed!")
 end)
 Gamer:Button("Rocitizens",function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/rocitizens"))()
+print("Button Pressed!")
 end)
 
 local Gamer = library:CreateSection("Hubs");
