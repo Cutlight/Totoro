@@ -29,7 +29,7 @@ Gamer:Button("Rocitizens",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/rocitizens"))()
 end)
 Gamer:Button("Test",function()
-loadstring(game:HttpGet(""))()
+loadstring(game:HttpGet("testtest"))()
 end)
 
 local Gamer = library:CreateSection("Hubs");
