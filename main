@@ -7,23 +7,14 @@ local Gamer = library:CreateSection("Scripts");
 Gamer:Button("FPS Boost",function()
 loadstring(game:HttpGet("https://pastebin.com/raw/dKSP2Pm6", true))()
 end)
-Gamer:Button("Enable Shiftlock",function()
-game:GetService('Players').LocalPlayer.DevEnableMouseLock=true
-end)
 Gamer:Button("Walk On Walls",function()
 https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/walk%20on%20walls
-end)
-Gamer:Button("test",function()
-print("Nice!")
 end)
 
 local Gamer = library:CreateSection("Games");
 
 Gamer:Button("Custom Duels",function()
 loadstring(game:HttpGet("https://pastebin.com/raw/4PnjK4MH",true))()
-end)
-Gamer:Button("Ragdoll Engine",function()
-print("Nice!")
 end)
 Gamer:Button("Dino Simulator",function()
 loadstring(game:HttpGet("https://pastebin.com/raw/npzUE0AE"))()
