@@ -14,7 +14,7 @@ Gamer:Button("Walk On Walls",function()
 https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/walk%20on%20walls
 end)
 Gamer:Button("test",function()
-print("Button Pressed!")
+print("Nice!")
 end)
 
 local Gamer = library:CreateSection("Games");
@@ -23,7 +23,7 @@ Gamer:Button("Custom Duels",function()
 loadstring(game:HttpGet("https://pastebin.com/raw/4PnjK4MH",true))()
 end)
 Gamer:Button("Ragdoll Engine",function()
-loadstring(game:HttpGet(('https://gitlab.com/Tsuniox/lua-stuff/-/raw/master/RagdollEngineGUI.lua'),true))()
+print("Nice!")
 end)
 Gamer:Button("Dino Simulator",function()
 loadstring(game:HttpGet("https://pastebin.com/raw/npzUE0AE"))()
