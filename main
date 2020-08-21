@@ -20,9 +20,6 @@ end)
 local Gamer = library:CreateSection("Games");
 
 Gamer:Button("Custom Duels",function()
-_G.CircleSize = 10 -- circle size
-_G.bind = "r" -- key to turn it on/off
--- comma/period to increase/decrease the size
 loadstring(game:HttpGet("https://pastebin.com/raw/4PnjK4MH",true))()
 end)
 Gamer:Button("Ragdoll Engine",function()
