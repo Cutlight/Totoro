@@ -10,7 +10,10 @@ end)
 Gamer:Button("Enable Shiftlock",function()
 game:GetService('Players').LocalPlayer.DevEnableMouseLock=true
 end)
-Gamer:Button("3",function()
+Gamer:Button("Walk On Walls",function()
+https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/walk%20on%20walls.lua
+end)
+Gamer:Button("test",function()
 print("Button Pressed!")
 end)
 
@@ -31,8 +34,14 @@ end)
 Gamer:Button("Natural Disaster",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/redwireplatinum/NDSGUI/master/NDSGUI"))()
 end)
-Gamer:Button("3",function()
-print("Button Pressed!")
+Gamer:Button("Arsenal",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/Arsenal"))()
+end)
+Gamer:Button("Mount of the Gods",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/Mount%20of%20the%20Gods.lua"))()
+end)
+Gamer:Button("Rocitizens",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Cutlight/Totoro-Scripts/master/rocitizens.lua"))()
 end)
 
 local Gamer = library:CreateSection("Hubs");
